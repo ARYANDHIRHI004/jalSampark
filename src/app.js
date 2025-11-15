@@ -11,8 +11,7 @@ app.use(
     origin: env.ORIGIN,
     credentials: true,
     methods:["GET","POST","PUT","DELETE","OPTIONS"],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    accessControlAllowCredentials: true
+    allowedHeaders: ['Content-Type', 'Authorization']
   }),
 );
 
