@@ -3,9 +3,9 @@ import { AvailableUserRoles, env, UserRolesEnum } from "../constents.js";
 
 const userQuerySchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
     },
     query: {
       type: String,
@@ -26,12 +26,9 @@ const userQuerySchema = new mongoose.Schema(
       },
     },
     geoLocation: {
-      let: {
-        type: String,
-      },
-      long: {
-        type: String,
-
+      type: {
+        let: String,
+        long: String,
       },
       required: true,
     },
