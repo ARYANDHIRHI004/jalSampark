@@ -15,6 +15,9 @@ app.use(
   }),
 );
 
+console.log(env.ORIGIN);
+
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
