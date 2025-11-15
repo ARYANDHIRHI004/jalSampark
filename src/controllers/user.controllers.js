@@ -62,7 +62,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Invalid password");
   }
 
-  
+
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     user,
   );
@@ -83,9 +83,9 @@ export const logoutUser = asyncHandler(async (req, res) => {
   if (!userId) {
     throw new ApiError(401, "User not logged In");
   }
-    
+
   const user = await User.findByIdAndUpdate(
-      userId,
+    userId,
     {
       $set: {
         refrehTokne: null,
@@ -99,6 +99,8 @@ export const logoutUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
+    sameSite: "strict",
+    maxAge: 1000 * 60 * 60 * 24 * 7,
   };
 
   return res
@@ -112,7 +114,7 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
   const userId = req.user?._id;
 
   console.log(userId);
-  
+
   const user = await User.findById(userId);
 
   if (!user) {
@@ -124,4 +126,4 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "User found successfully", user));
 });
 
-export const verifyEmail = asyncHandler(async (req, res) => {});
+export const verifyEmail = asyncHandler(async (req, res) => { });
