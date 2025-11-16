@@ -1,3 +1,4 @@
+import { env } from "../constents.js";
 import { User } from "../models/users.models.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -69,6 +70,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
+    sameSite: "strict",
+    maxAge: 1000 * 60 * 60 * 24 * 7,
   };
   return res
     .status(200)
@@ -100,6 +103,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     sameSite: "strict",
+    secure:  env.NODE_ENV !== "development",
     maxAge: 1000 * 60 * 60 * 24 * 7,
   };
 
